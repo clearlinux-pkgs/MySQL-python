@@ -4,3 +4,4 @@ MySQL-python
 mariadb-dev
 zlib-dev
 openssl-dev
+setuptools-legacypython
