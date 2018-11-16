@@ -4,7 +4,7 @@
 #
 Name     : MySQL-python
 Version  : 1.2.5
-Release  : 32
+Release  : 33
 URL      : https://pypi.python.org/packages/source/M/MySQL-python/MySQL-python-1.2.5.zip
 Source0  : https://pypi.python.org/packages/source/M/MySQL-python/MySQL-python-1.2.5.zip
 Summary  : Python interface to MySQL
@@ -52,7 +52,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540414117
+export SOURCE_DATE_EPOCH=1542405491
 python2 setup.py build -b py2
 
 %check
