@@ -4,7 +4,7 @@
 #
 Name     : MySQL-python
 Version  : 1.2.5
-Release  : 33
+Release  : 34
 URL      : https://pypi.python.org/packages/source/M/MySQL-python/MySQL-python-1.2.5.zip
 Source0  : https://pypi.python.org/packages/source/M/MySQL-python/MySQL-python-1.2.5.zip
 Summary  : Python interface to MySQL
