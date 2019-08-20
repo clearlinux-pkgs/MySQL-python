@@ -4,7 +4,7 @@
 #
 Name     : MySQL-python
 Version  : 1.2.5
-Release  : 35
+Release  : 36
 URL      : https://pypi.python.org/packages/source/M/MySQL-python/MySQL-python-1.2.5.zip
 Source0  : https://pypi.python.org/packages/source/M/MySQL-python/MySQL-python-1.2.5.zip
 Summary  : Python interface to MySQL
@@ -18,6 +18,7 @@ BuildRequires : mariadb-dev
 BuildRequires : openssl-dev
 BuildRequires : setuptools-legacypython
 BuildRequires : zlib-dev
+Patch1: 0001-Fix-compile-error-with-MariaDB-10.2.-177.patch
 
 %description
 =========================
@@ -46,13 +47,23 @@ python components for the MySQL-python package.
 
 %prep
 %setup -q -n MySQL-python-1.2.5
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1542405491
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1566269035
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export MAKEFLAGS=%{?_smp_mflags}
 python2 setup.py build -b py2
 
 %check
@@ -61,6 +72,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 py.test-2.7 || :
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
 
